@@ -328,6 +328,10 @@ class EmailMixin(models.Model):
         return ''.join([match.group(0) + '\n' for match in
                         self.response_re.finditer(self.content)])
 
+    def save(self, *args, **kwargs):
+        self.content = self.content.replace('\r\n', '\n')
+        super(EmailMixin, self).save(*args, **kwargs)
+
     class Meta:
         abstract = True
 
