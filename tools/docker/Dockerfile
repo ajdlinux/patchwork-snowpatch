@@ -10,6 +10,7 @@ ENV db_pass password
 ENV DJANGO_SETTINGS_MODULE patchwork.settings.dev
 ENV DEBIAN_FRONTEND noninteractive
 ENV PYTHONUNBUFFERED 1
+ENV PYTHONIOENCODING UTF-8
 
 # System
 # trusty and findutils is for python3.4
