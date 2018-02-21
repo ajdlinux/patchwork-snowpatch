@@ -349,7 +349,7 @@ def get_or_create_author(mail):
         # we lost the race to create the person
         person = Person.objects.get(email__iexact=email)
 
-    if name:  # use the latest provided name
+    if name and name != person.name:  # use the latest provided name
         person.name = name
         person.save()
 
