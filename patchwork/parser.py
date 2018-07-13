@@ -792,6 +792,19 @@ def parse_patch(content):
 
             if line.startswith(('rename from ', 'rename to ')):
                 state = 6
+            elif line.startswith('diff ') or line.startswith('Index: ') \
+                    or line.startswith('deleted file ') \
+                    or line.startswith('index ') \
+                    or line.startswith('new file ') \
+                    or line.startswith('====') \
+                    or line.startswith('RCS file: ') \
+                    or line.startswith('retrieving revision '):
+                state = 1
+            else:
+                state = 0
+                commentbuf += buf
+                buf = ''
+
         elif state == 2:
             if line.startswith('+++ '):
                 state = 3
